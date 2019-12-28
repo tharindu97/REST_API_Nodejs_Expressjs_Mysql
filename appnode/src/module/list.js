@@ -2,8 +2,33 @@ import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import axios from 'axios';
 
 class listComponent extends React.Component  {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            listEmployee: []
+        }
+    }
+    componentDidMount(){
+
+        const url = 'http://localhost:3000/employee/list';
+        axios.get(url)
+        .then(res=>{
+            if(res.data.success){
+                const data = res.data.data
+                this.setState({listEmployee: data})
+            }else{
+                alert('Error web service');
+            }
+        })
+        .catch(error=>{
+            alert('Error server' + error)
+        })
+    }
+
   render()
   {
     return (
@@ -20,13 +45,22 @@ class listComponent extends React.Component  {
           </tr>
         </thead>
         <tbody>
+          {this.loadFillData()}
+        </tbody>
+      </table>
+    );
+  }
+
+  loadFillData(){
+    return this.state.listEmployee.map((data)=>{
+        return(
           <tr>
-            <th>1</th>
-            <td>Admin</td>
-            <td>John Smitth</td>
-            <td>jhonsmith@mail.com</td>
-            <td>California</td>
-            <td>317785847</td>
+            <th>{data.id}</th>
+            <td>{data.role.role}</td>
+            <td>{data.name}</td>
+            <td>{data.email}</td>
+            <td>{data.address}</td>
+            <td>{data.phone}</td>
             <td>
               <button class="btn btn-outline-info "> Edit </button>
             </td>
@@ -34,9 +68,8 @@ class listComponent extends React.Component  {
               <button class="btn btn-outline-danger "> Delete </button>
             </td>
           </tr>
-        </tbody>
-      </table>
-    );
+        )
+      });
   }
 }
 
