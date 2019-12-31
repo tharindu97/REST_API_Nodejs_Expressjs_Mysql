@@ -33,7 +33,7 @@ controller.create = async (req, res) => {
         roleId: role
     })
     .then(function(data){
-        return Date;
+        return data;
     })
     .catch(error => {
         console.log(error)

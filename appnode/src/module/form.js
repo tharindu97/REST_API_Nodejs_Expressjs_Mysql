@@ -19,36 +19,36 @@ class EditComponent extends React.Component{
  render(){
    return (
      <div>
-       <div class="form-row justify-content-center">
-         <div class="form-group col-md-6">
-           <label for="inputPassword4">Name </label>
-           <input type="text" class="form-control"  placeholder="Name" value={this.state.campName} onChange={(value)=> this.setState({campName:value.target.value})}/>
+       <div className="form-row justify-content-center">
+         <div className="form-group col-md-6">
+           <label htmlFor="inputPassword4">Name </label>
+           <input type="text" className="form-control"  placeholder="Name" value={this.state.campName} onChange={(value)=> this.setState({campName:value.target.value})}/>
          </div>
-         <div class="form-group col-md-6">
-           <label for="inputEmail4">Email</label>
-           <input type="email" class="form-control"  placeholder="Email" value={this.state.campEmail} onChange={(value)=> this.setState({campEmail:value.target.value})}/>
+         <div className="form-group col-md-6">
+           <label htmlFor="inputEmail4">Email</label>
+           <input type="email" className="form-control"  placeholder="Email" value={this.state.campEmail} onChange={(value)=> this.setState({campEmail:value.target.value})}/>
          </div>
        </div>
-       <div class="form-row">
-         <div class="form-group col-md-6">
-           <label for="inputState">Role</label>
-           <select id="inputState" class="form-control" onChange={(value)=> this.setState({selectRole:value.target.value})}>
-             <option selected>Choose...</option>
+       <div className="form-row">
+         <div className="form-group col-md-6">
+           <label htmlFor="inputState">Role</label>
+           <select id="inputState" className="form-control" onChange={(value)=> this.setState({selectRole:value.target.value})}>
+             <option defaultValue>Choose...</option>
              <option value="1">Admin...</option>
              <option value="2">Project Manager</option>
              <option value="3">Programer</option>
            </select>
          </div>
-         <div class="form-group col-md-6">
-           <label for="inputEmail4">Phone</label>
-           <input type="number" class="form-control"  placeholder="Phone"  value={this.state.campPhone} onChange={(value)=> this.setState({campPhone:value.target.value})}/>
+         <div className="form-group col-md-6">
+           <label htmlFor="inputEmail4">Phone</label>
+           <input type="number" className="form-control"  placeholder="Phone"  value={this.state.campPhone} onChange={(value)=> this.setState({campPhone:value.target.value})}/>
          </div>
        </div>
-       <div class="form-group">
-         <label for="inputAddress">Address</label>
-         <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" value={this.state.campAddress} onChange={(value)=> this.setState({campAddress:value.target.value})}/>
+       <div className="form-group">
+         <label htmlFor="inputAddress">Address</label>
+         <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" value={this.state.campAddress} onChange={(value)=> this.setState({campAddress:value.target.value})}/>
        </div>
-       <button type="submit" class="btn btn-primary" onClick={()=>this.sendSave()}>Save</button>
+       <button type="submit" className="btn btn-primary" onClick={()=>this.sendSave()}>Save</button>
      </div>
    );
  }
@@ -73,7 +73,7 @@ class EditComponent extends React.Component{
   else {
     // url backend
     const baseUrl = "http://localhost:3000/employee/create"
-
+   
     const datapost = {
       name : this.state.campName,
       email : this.state.campEmail,
@@ -81,10 +81,11 @@ class EditComponent extends React.Component{
       address : this.state.campAddress,
       role  : this.state.selectRole
     }
+    console.log(datapost);
 
     axios.post(baseUrl,datapost)
     .then(response=>{
-      if (response.data.success===true) {
+      if (response.data.success === true) {
         alert(response.data.message)
       }
       else {
@@ -98,6 +99,4 @@ class EditComponent extends React.Component{
 
 }
 }
-
-
 export default EditComponent;
