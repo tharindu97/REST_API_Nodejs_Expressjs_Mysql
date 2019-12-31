@@ -21,6 +21,32 @@ controller.list = async (req, res) => {
     res.json({success: true, data: data});
 }
 
+controller.create = async (req, res) => {
+    //Data
+    const {name, email, address, phone, role} = req.body;
+    // Create
+    const data = await Employee.create({
+        name: name,
+        email: email,
+        address: address,
+        phone: phone,
+        roleId: role
+    })
+    .then(function(data){
+        return Date;
+    })
+    .catch(error => {
+        console.log(error)
+        return error;
+    })
+    // return res
+    res.status(200).json({
+        success: true,
+        message: 'Success create',
+        data: data
+    })
+}
+
 /*
 controller.testdata = async (req, res) =>{
     const response = await sequelize.sync().then(function (){
