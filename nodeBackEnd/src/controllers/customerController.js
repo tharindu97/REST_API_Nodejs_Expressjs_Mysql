@@ -23,7 +23,7 @@ controller.list = async (req, res) => {
 
 controller.create = async (req, res) => {
     //Data
-    const {name, email, address, phone, role} = req.body;
+    const { name, email, address, phone, role } = req.body;
     // Create
     const data = await Employee.create({
         name: name,
@@ -77,7 +77,7 @@ controller.list = async ( req, res) => {
 
 }*/
 
-controller.test = (req, res) => {
+/*controller.test = (req, res) => {
     const data = {
         name: "tharindu kavishna",
         age: 22, 
@@ -86,6 +86,6 @@ controller.test = (req, res) => {
 
     console.log('Send data from controller employee');
     res.json(data);
-}
+}*/
 
 module.exports = controller;
